@@ -19,34 +19,6 @@ public:
     }
     }
 
-    /*void DijSSS(t src){
-    unordered_map <t, int> distance;
-    for(auto p : um){
-        distance[p.first] = INT_MAX;
-    }
-    distance[src] = 0;
-    set <pair<int, t>> s;
-    s.insert(make_pair(0, src));
-    while(!s.empty()){
-        auto p = *(s.begin());
-        t node = p.second;
-        int nodeDist = p.first;
-        s.erase(s.begin());
-        for(auto nbr : um[node]){
-            if(nodeDist + nbr.second < distance[nbr.first]){
-                auto x = s.find(make_pair(nbr.second, nbr.first));
-                if(x != s.end()){
-                    s.erase(x);
-                }
-                distance[nbr.first] = nodeDist + nbr.second;
-                s.insert(make_pair(nodeDist + nbr.second, nbr.first));
-            }
-        }
-    }
-    for(auto x : distance){
-        cout<<x.first<<"->"<<x.second<<endl;
-    }
-    }*/
     void DijSSS(t src){
     unordered_map <t, int> distance;
     for(auto p : um){
