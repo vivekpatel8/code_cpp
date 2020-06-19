@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-
+// it is used to find minimum spanning tree
+// the vertex is taken if it is not forming cycle
 class node{
 public:
     int x;
@@ -60,14 +60,14 @@ for(int i = 0;i<k;i++){
     temp.wt = wt;
     vec[i] = temp;
 }
-sort(vec.begin(), vec.end(), comp());
+sort(vec.begin(), vec.end(), comp()); // it is sorted according to the wt of vertex
 for(int i = 0;i<k;i++){
     int wt = vec[i].wt;
     int x = vec[i].x;
     int y = vec[i].y;
-    if(g.get_super_parent(x) != g.get_super_parent(y)){
+    if(g.get_super_parent(x) != g.get_super_parent(y)){ // if not forming cycle then it is taken
         g.union_(x, y);
-        ans += wt;
+        ans += wt; // wt is included
     }
 }
 cout<<ans<<endl;
