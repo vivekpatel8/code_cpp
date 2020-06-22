@@ -60,7 +60,7 @@ for(int i = 0;i<k;i++){
     temp.wt = wt;
     vec[i] = temp;
 }
-sort(vec.begin(), vec.end(), comp()); // it is sorted according to the wt of vertex
+sort(vec.begin(), vec.end(), comp()); // it is sorted according to the wt of edges
 for(int i = 0;i<k;i++){
     int wt = vec[i].wt;
     int x = vec[i].x;
