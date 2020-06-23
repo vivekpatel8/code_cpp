@@ -1,49 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
-unordered_map<int, list<int>> gr;
-
-//unordered_map<int, int> par; // for counting the nos of parent a node has
-
-unordered_map<int, int> child; // for counting the nos of children a node has
-
-unordered_map<int, int> vis;
-
-unordered_map<int, int> parent;
+#define ll long long
+ll p ;
+ll ans = 0;
+void dfs(ll src, vector <ll> * gr, bool * vis){
+vis[src] = true;
+for(auto nbr : gr[src]){
+    if(!vis[nbr]){
+    if(src == p){
+    if(gr[nbr].size() > gr[src].size() - 1)ans++;
+    }
+    else{
+    if(gr[nbr].size() > gr[src].size())ans++;
+    }
+    dfs(nbr, gr, vis);
+    }
+}
+}
 
 int main(){
-int n, m;
+ll n, m;
 cin>>n>>m;
-int src = INT_MAX;
+
+vector <ll> gr[(n+1)];
+
+bool vis[(n+1)] = {false};
+
 while(m--){
-    int x, y;
+    ll x, y;
     cin>>x>>y;
-    src = min(src, min(x, y));
     gr[x].push_back(y);
+    gr[y].push_back(x);
 }
 
-queue <int> q;
-
-q.push(src);
-while(!q.empty()){
-    int node = q.front();
-    q.pop();
-    if(!vis.count(node)){
-        vis[node] = 1;
-    for(int nbr : gr[node]){
-        //par[nbr]++;
-        parent[nbr] = node;
-        child[node]++;
-        q.push(nbr);
-    }
-    }
-}
-int ans = 0;
-for(auto parent_pair : parent){
-    int child_ = parent_pair.first;
-    int parent_ = parent_pair.second;
-    //cout<<parent_<<" -> "<<child_<<endl;
-    if(child[child_] > child[parent_]){
-        ans++;
+for(ll i = 1;i<=n;i++){
+    p = i;
+    if(!vis[i]){
+        dfs(i, gr, vis);
     }
 }
 cout<<ans;
